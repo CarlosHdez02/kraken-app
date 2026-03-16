@@ -10,7 +10,7 @@ import { createTraineeAction } from "@/actions/Trainee.action";
 export default function TraineeTablePage() {
   const [open, setOpen] = React.useState(false);
   return (
-    <div className="container mx-auto py-8 space-y-6">
+    <div className="mx-auto py-8 space-y-6">
       <h1 className="text-3xl font-semibold tracking-tight text-primary">
         Alumnos
       </h1>
