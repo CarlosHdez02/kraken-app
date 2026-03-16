@@ -1,5 +1,4 @@
 import TraineeTable from "@/features/trainee-table/trainee-table.component";
-import dynamic from "next/dynamic";
 
 
 
