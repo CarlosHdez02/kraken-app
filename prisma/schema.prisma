@@ -30,7 +30,7 @@ model Trainee {
   isActive      Boolean         @default(true)
   phone         String          @db.VarChar(15)
   hasPaid       Boolean         @default(false)
-  lastPaymentAt DateTime?
+  lastPaymentAt DateTime
   planType      TraineePlanType
 
   @@map("Trainee")

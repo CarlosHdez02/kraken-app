@@ -23,6 +23,7 @@ const traineeData:Prisma.TraineeCreateInput[] = [
         isActive:true,
         createdAt:dayjs().toISOString(),
         updatedAt:dayjs().toISOString(),
+        planType:"UNLIMITED",
     }
 ]
 
