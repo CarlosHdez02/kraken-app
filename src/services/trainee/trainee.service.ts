@@ -6,7 +6,7 @@ import { createErrorResponse } from "@/models/action-response/action-response.ty
 import { ErrorCode } from "@/constants/error-codes";
 import { PrismaClient } from "@/generated/prisma/client";
 import { runPaginatedQuery } from "../../../lib/pagination";
-import type { traineeType } from "@/models/trainee/trainee.type";
+import type { createTraineeType, traineeType } from "@/models/trainee/trainee.type";
 import { UUID } from "crypto";
 
 export default class TraineeService {
@@ -36,7 +36,7 @@ export default class TraineeService {
       return createErrorResponse(errorMessage, { code: ErrorCode.DB_ERROR });
     }
   }
-  async createTrainee(trainee:traineeType):Promise<ActionResponseType<traineeType>>{
+  async createTrainee(trainee:createTraineeType):Promise<ActionResponseType<traineeType>>{
     try{
         const newTrainee = await this.prisma.trainee.create({data:{
             ...trainee,

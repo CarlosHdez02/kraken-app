@@ -1,9 +1,8 @@
 "use client";
-import { createTraineeType, traineeType } from "@/models/trainee/trainee.type";
+import { traineeType } from "@/models/trainee/trainee.type";
 import React from "react";
 import { PaginationState } from "@tanstack/react-table";
 import {
-  createTraineeAction,
   getTraineesAction,
 } from "@/actions/Trainee.action";
 export type status = "idle" | "loading" | "success" | "error";
@@ -58,25 +57,4 @@ export const useTrainee = () => {
     );
   };
   return { data, pagination, pageCount, status, handlePaginationChange };
-};
-
-export const useCreateTrainee = () => {
-  const [trainee, setTrainee] = React.useState<traineeType | null>(null);
-  const [status, setStatus] = React.useState<status>("idle");
-
-  const handleCreateTrainee = async (trainee: createTraineeType) => {
-    try {
-      setStatus("loading");
-      const response = await createTraineeAction(trainee);
-      if (!response.success) {
-        throw new Error(response.errorMessage ?? "Failed to create trainee");
-      }
-      setTrainee(response.data);
-      setStatus("success");
-    } catch {
-      setStatus("error");
-    }
-  };
-
-  return { handleCreateTrainee, status, trainee };
 };

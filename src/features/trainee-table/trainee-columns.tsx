@@ -12,7 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { PlanMapType, planMap } from "@/constants/plan-map/plan-map";
+import { PlanMapType, beltMaps, planMap } from "@/constants/plan-map/plan-map";
 
 export type TraineeColumnsActions = {
   onEdit: (trainee: traineeType) => void;
@@ -72,7 +72,7 @@ export function getTraineeColumns(actions: TraineeColumnsActions): ColumnDef<tra
     {
       accessorKey: "rank",
       header: "Rango",
-      cell: ({ getValue }) => getValue() ?? "—",
+      cell: ({ getValue }) => beltMaps[getValue() as keyof typeof beltMaps] ?? "-",
     },
     {
       accessorKey: "age",
