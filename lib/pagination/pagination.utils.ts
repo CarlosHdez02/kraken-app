@@ -5,6 +5,9 @@ export type PaginationInputType = {
     page:number;
     limit:number;
     maxLimit?:number;
+    orderBy?:{
+        [key:string]:'asc' | 'desc';
+    }
 }
 
 export function clampLimit(limit:number,max:number=DEFAULT_MAX_LIMIT):number{
@@ -12,7 +15,7 @@ export function clampLimit(limit:number,max:number=DEFAULT_MAX_LIMIT):number{
 }
 
 export function getPaginationOffset(input:PaginationInputType):{skip:number;take:number}{
-    const {page,limit,maxLimit} = input
+    const {page,limit,maxLimit,orderBy} = input
     const take = clampLimit(limit,maxLimit);
     const skip = (Math.max(1,page)-1)*take;
     return {skip,take}

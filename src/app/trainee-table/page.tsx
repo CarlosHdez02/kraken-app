@@ -1,0 +1,5 @@
+const TraineeTablePage = ()=>{
+    return(
+        <TraineeTablePage/>
+    )
+}
