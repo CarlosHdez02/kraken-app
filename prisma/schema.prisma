@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum TraineePlanType {
+  SINGLE_VISIT
+  TWICE_PER_WEEK
+  THREE_PER_WEEK
+  UNLIMITED
+}
+
+model Trainee {
+  id            String          @id @default(uuid())
+  firstName     String          @db.VarChar(30)
+  lastName      String          @db.VarChar(30)
+  email         String          @unique @db.VarChar(255)
+  age           Int
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  isActive      Boolean         @default(true)
+  phone         String          @db.VarChar(15)
+  hasPaid       Boolean         @default(false)
+  lastPaymentAt DateTime?
+  planType      TraineePlanType
+
+  @@map("Trainee")
+}
+
+enum CoachRank {
+  blueBelt
+  purpleBelt
+  BrownBelt
+  BlackBelt
+}
+
+model Coach {
+  id        String    @id @default(uuid())
+  firstName String    @db.VarChar(30)
+  lastName  String    @db.VarChar(30)
+  email     String    @unique @db.VarChar(255)
+  age       Int
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  phone     String    @db.VarChar(15)
+  rank      CoachRank
+
+  @@map("Coach")
+}
