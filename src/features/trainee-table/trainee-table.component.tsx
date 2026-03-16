@@ -25,7 +25,9 @@ export default function TraineeTable() {
   );
 
   return (
-    <GenericTable
+    <div className="w-full">
+  <GenericTable
+      maxBodyHeight="calc(100vh - 250px)"
       data={data}
       columns={columns}
       pagination={pagination}
@@ -33,5 +35,7 @@ export default function TraineeTable() {
       pageCount={pageCount}
       isLoading={status === "loading"}
     />
+    </div>
+  
   );
 }

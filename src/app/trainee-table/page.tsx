@@ -10,11 +10,11 @@ import { createTraineeAction } from "@/actions/Trainee.action";
 export default function TraineeTablePage() {
   const [open, setOpen] = React.useState(false);
   return (
-    <div className="mx-auto py-8 space-y-6">
-      <h1 className="text-3xl font-semibold tracking-tight text-primary">
+    <div className="ml-3 mr-4 py-8 space-y-6  overflow-x-hidden">
+      <h1 className="text-2xl font-semibold tracking-tight text-primary">
         Alumnos
       </h1>
-      <div className="mb-4 flex items-center justify-end">
+      <div className="mt-2 mb-4 flex items-center justify-end">
         <GenericModal
           open={open}
           onOpenChange={setOpen}
