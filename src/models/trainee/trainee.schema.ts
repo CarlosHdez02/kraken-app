@@ -1,21 +1,10 @@
 import { z } from "zod";
 import { paginationSchema } from "../pagination/pagination.schema";
-import { Rank } from "@/generated/prisma/enums";
+import { Rank, TraineePlanType } from "@/generated/prisma/enums";
 
 /** Matches Prisma TraineePlanType enum */
-export const traineePlanTypeEnum = z.enum([
-  "SINGLE_VISIT",
-  "TWICE_PER_WEEK",
-  "THREE_PER_WEEK",
-  "UNLIMITED",
-]);
-export const rankEnum = z.enum([
-  "whiteBelt",
-  "blueBelt",
-  "purpleBelt",
-  "BrownBelt",
-  "BlackBelt",
-]);
+export const traineePlanTypeEnum = z.nativeEnum(TraineePlanType);
+export const rankEnum = z.nativeEnum(Rank);
 
 export const traineeSchema = z.object({
   id: z.string().uuid(),
@@ -28,9 +17,9 @@ export const traineeSchema = z.object({
   updatedAt: z.date(),
   isActive: z.boolean(),
   phone: z.string().max(15),
-  lastPaymentAt: z.date(),
+  lastPaymentAt: z.date().nullable(),
   planType: traineePlanTypeEnum,
-  rank: z.enum(Rank),
+  rank: rankEnum,
 });
 
 export const traineeApiResponseSchema = z.object({
@@ -47,7 +36,7 @@ export const createTraineeSchema = z.object({
     age:z.number().int(),
     phone:z.string().max(15),
     planType:traineePlanTypeEnum,
-    rank:z.enum(Rank),
+    rank: rankEnum,
     birthDate:z.date(),
 });
 

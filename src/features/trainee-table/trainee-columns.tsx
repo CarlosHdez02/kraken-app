@@ -6,11 +6,13 @@ import { traineeType } from "@/models/trainee/trainee.type";
 import TableActions from "@/shared/table-actions/Table-actions.component";
 import { EllipsisVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { PlanMapType, planMap } from "@/constants/plan-map/plan-map";
 
 export type TraineeColumnsActions = {
   onEdit: (trainee: traineeType) => void;
@@ -85,13 +87,21 @@ export function getTraineeColumns(actions: TraineeColumnsActions): ColumnDef<tra
     {
       accessorKey: "planType",
       header: "Tipo de Plan",
-      cell: ({ getValue }) => String(getValue() ?? "—").replace(/_/g, " "),
+      cell: ({ getValue }) => planMap[getValue() as keyof typeof planMap] ?? "—",
     },
-    {
-      accessorKey: "isActive",
-      header: "Estatus",
-      cell: ({ getValue }) => (getValue() ? "Activo" : "Inactivo"),
-    },
+      {
+        accessorKey: "isActive",
+        header: "Estatus",
+        cell: ({ row }) => {
+          const isActive = row.getValue("isActive") as boolean
+      
+          return isActive ? (
+            <Badge variant="default">Activo</Badge>
+          ) : (
+            <Badge variant="destructive">Inactivo</Badge>
+          )
+        },
+      },
     {
       accessorKey: "lastPaymentAt",
       header: "Pago Realizado",
