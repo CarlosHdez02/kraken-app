@@ -24,6 +24,7 @@ const traineeData:Prisma.TraineeCreateInput[] = [
         createdAt:dayjs().toISOString(),
         updatedAt:dayjs().toISOString(),
         planType:"UNLIMITED",
+        rank:"blueBelt",
     }
 ]
 

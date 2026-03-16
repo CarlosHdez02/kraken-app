@@ -19,8 +19,9 @@ export const useTrainee = ()=>{
         let cancelled = false;
         setStatus("loading");
         getTraineesAction({
-            page:pagination.pageIndex+1,
-            limit:pagination.pageSize
+            page: pagination.pageIndex + 1,
+            limit: pagination.pageSize,
+            orderBy: "asc",
         })
         .then((response)=>{
             if(response.success){

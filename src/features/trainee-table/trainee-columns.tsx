@@ -40,7 +40,7 @@ export const traineeColumns: ColumnDef<traineeType, unknown>[] = [
     {
       accessorKey: "hasPaid",
       header: "Pago Realizado",
-      cell: ({ getValue }) => (getValue() ? "Yes" : "No"),
+      cell: ({ getValue }) => (getValue() ? "18/03/2026" : "No"),
     },
     {
       accessorKey: "lastPaymentAt",
