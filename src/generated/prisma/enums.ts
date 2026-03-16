@@ -23,8 +23,8 @@ export const Rank = {
   whiteBelt: 'whiteBelt',
   blueBelt: 'blueBelt',
   purpleBelt: 'purpleBelt',
-  BrownBelt: 'BrownBelt',
-  BlackBelt: 'BlackBelt'
+  brownBelt: 'brownBelt',
+  blackBelt: 'blackBelt'
 } as const
 
 export type Rank = (typeof Rank)[keyof typeof Rank]

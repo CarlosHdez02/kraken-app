@@ -1,14 +1,8 @@
-/*
-  Warnings:
-
-  - You are about to drop the `alumni` table. If the table is not empty, all the data it contains will be lost.
-
-*/
 -- CreateEnum
-CREATE TYPE "CoachRank" AS ENUM ('blueBelt', 'purpleBelt', 'BrownBelt', 'BlackBelt');
+CREATE TYPE "TraineePlanType" AS ENUM ('SINGLE_VISIT', 'TWICE_PER_WEEK', 'THREE_PER_WEEK', 'UNLIMITED');
 
--- DropTable
-DROP TABLE "alumni";
+-- CreateEnum
+CREATE TYPE "Rank" AS ENUM ('whiteBelt', 'blueBelt', 'purpleBelt', 'brownBelt', 'blackBelt');
 
 -- CreateTable
 CREATE TABLE "Trainee" (
@@ -17,12 +11,14 @@ CREATE TABLE "Trainee" (
     "lastName" VARCHAR(30) NOT NULL,
     "email" VARCHAR(255) NOT NULL,
     "age" INTEGER NOT NULL,
+    "birthDate" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "isActive" BOOLEAN NOT NULL DEFAULT true,
     "phone" VARCHAR(15) NOT NULL,
-    "hasPaid" BOOLEAN NOT NULL DEFAULT false,
     "lastPaymentAt" TIMESTAMP(3),
+    "planType" "TraineePlanType" NOT NULL,
+    "rank" "Rank" NOT NULL DEFAULT 'whiteBelt',
 
     CONSTRAINT "Trainee_pkey" PRIMARY KEY ("id")
 );
@@ -37,7 +33,7 @@ CREATE TABLE "Coach" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "phone" VARCHAR(15) NOT NULL,
-    "rank" "CoachRank" NOT NULL,
+    "rank" "Rank" NOT NULL,
 
     CONSTRAINT "Coach_pkey" PRIMARY KEY ("id")
 );

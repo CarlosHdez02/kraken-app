@@ -1,36 +1,162 @@
 import { env } from "@/models/envs/envs.schema";
 import { PrismaClient, Prisma } from "../src/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 
 const adapter = new PrismaPg({
-    connectionString:env.DATABASE_URL,
+  connectionString: env.DATABASE_URL,
 });
 
 const prisma = new PrismaClient({
-    adapter,
-})
+  adapter,
+});
 
-const traineeData:Prisma.TraineeCreateInput[] = [
-    {
-        firstName:"Carlos",
-        lastName:"Hernandez",
-        email:"carloshinzunza2@gmail.com",
-        age:24,
-        phone:"+52 1234567890",
-        hasPaid:true,
-        lastPaymentAt:dayjs().toISOString(),
-        isActive:true,
-        createdAt:dayjs().toISOString(),
-        updatedAt:dayjs().toISOString(),
-        planType:"UNLIMITED",
-        rank:"whiteBelt",
-    }
-]
+const traineeData: Prisma.TraineeCreateInput[] = [
+  {
+    firstName: "Carlos",
+    lastName: "Hernandez",
+    email: "carloshinzunza2@gmail.com",
+    age: 24,
+    phone: "+52 1234567890",
+    lastPaymentAt: dayjs().toISOString(),
+    isActive: true,
+    createdAt: dayjs().toISOString(),
+    updatedAt: dayjs().toISOString(),
+    planType: "UNLIMITED",
+    rank: "whiteBelt",
+    birthDate: dayjs("2001-16-01").toDate(),
+  },
+  {
+    firstName: "Ana",
+    age: 25,
+    lastName: "Lopez",
+    email: "ana.lopez.training@gmail.com",
+    birthDate: dayjs("1998-07-21").toISOString(),
+    phone: "+52 5523456789",
+    isActive: true,
+    lastPaymentAt: dayjs().subtract(10, "day").toISOString(),
+    planType: "TWICE_PER_WEEK",
+    rank: "whiteBelt",
+    createdAt: dayjs().subtract(60, "day").toISOString(),
+    updatedAt: dayjs().toISOString(),
+  },
+  {
+    firstName: "Luis",
+    lastName: "Martinez",
+    age: 29,
+    email: "luis.martinez.bjj@gmail.com",
+    birthDate: dayjs("1994-11-04").toISOString(),
+    phone: "+52 5534567890",
+    isActive: true,
+    lastPaymentAt: dayjs().subtract(6, "day").toISOString(),
+    planType: "THREE_PER_WEEK",
+    rank: "blueBelt",
+    createdAt: dayjs().subtract(200, "day").toISOString(),
+    updatedAt: dayjs().toISOString(),
+  },
+  {
+    firstName: "Fernanda",
+    age: 28,
+    lastName: "Garcia",
+    email: "fernanda.garcia.fit@gmail.com",
+    birthDate: dayjs("2002-05-18").toISOString(),
+    phone: "+52 5545678901",
+    isActive: true,
+    lastPaymentAt: dayjs().subtract(1, "day").toISOString(),
+    planType: "UNLIMITED",
+    rank: "whiteBelt",
+    createdAt: dayjs().subtract(30, "day").toISOString(),
+    updatedAt: dayjs().toISOString(),
+  },
+  {
+    firstName: "Diego",
+    age: 30,
+    lastName: "Santos",
+    email: "diego.santosjj@gmail.com",
+    birthDate: dayjs("1995-09-09").toISOString(),
+    phone: "+52 5556789012",
+    isActive: true,
+    lastPaymentAt: dayjs().subtract(8, "day").toISOString(),
+    planType: "THREE_PER_WEEK",
+    rank: "purpleBelt",
+    createdAt: dayjs().subtract(365, "day").toISOString(),
+    updatedAt: dayjs().toISOString(),
+  },
+  {
+    firstName: "Mariana",
+    age: 27,
+    lastName: "Torres",
+    email: "mariana.torres.training@gmail.com",
+    birthDate: dayjs("1999-01-27").toISOString(),
+    phone: "+52 5567890123",
+    isActive: false,
+    lastPaymentAt: dayjs().subtract(90, "day").toISOString(),
+    planType: "TWICE_PER_WEEK",
+    rank: "whiteBelt",
+    createdAt: dayjs().subtract(300, "day").toISOString(),
+    updatedAt: dayjs().toISOString(),
+  },
+  {
+    firstName: "Ricardo",
+    age: 32,
+    lastName: "Vega",
+    email: "ricardo.vega.bjj@gmail.com",
+    birthDate: dayjs("1990-12-14").toISOString(),
+    phone: "+52 5578901234",
+    isActive: true,
+    lastPaymentAt: dayjs().subtract(2, "day").toISOString(),
+    planType: "UNLIMITED",
+    rank: "brownBelt",
+    createdAt: dayjs().subtract(600, "day").toISOString(),
+    updatedAt: dayjs().toISOString(),
+  },
+  {
+    firstName: "Sofia",
+    age: 26,
+    lastName: "Ramirez",
+    email: "sofia.ramirezjj@gmail.com",
+    birthDate: dayjs("2003-08-02").toISOString(),
+    phone: "+52 5589012345",
+    isActive: true,
+    lastPaymentAt: null,
+    planType: "SINGLE_VISIT",
+    rank: "whiteBelt",
+    createdAt: dayjs().subtract(5, "day").toISOString(),
+    updatedAt: dayjs().toISOString(),
+  },
+  {
+    firstName: "Jorge",
+    age: 31,
+    lastName: "Navarro",
+    email: "jorge.navarro.bjj@gmail.com",
+    birthDate: dayjs("1987-06-11").toISOString(),
+    phone: "+52 5590123456",
+    isActive: true,
+    lastPaymentAt: dayjs().subtract(4, "day").toISOString(),
+    planType: "THREE_PER_WEEK",
+    rank: "blackBelt",
+    createdAt: dayjs().subtract(900, "day").toISOString(),
+    updatedAt: dayjs().toISOString(),
+  },
+  {
+    firstName: "Valeria",
+    age: 29,
+    lastName: "Mendoza",
+    email: "valeria.mendoza.fit@gmail.com",
+    birthDate: dayjs("1997-04-30").toISOString(),
+    phone: "+52 5511223344",
+    isActive: true,
+    lastPaymentAt: dayjs().subtract(12, "day").toISOString(),
+    planType: "TWICE_PER_WEEK",
+    rank: "blueBelt",
+    createdAt: dayjs().subtract(120, "day").toISOString(),
+    updatedAt: dayjs().toISOString(),
+  },
+];
 
-export async function main(){
-    for(const trainee of traineeData){
-        await prisma.trainee.create({data:trainee});
-    }
+export async function main() {
+  for (const trainee of traineeData) {
+    await prisma.trainee.create({ data: trainee });
+  }
 }
-main()
+main();

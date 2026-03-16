@@ -40,11 +40,11 @@ export type TraineeMinAggregateOutputType = {
   lastName: string | null
   email: string | null
   age: number | null
+  birthDate: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   isActive: boolean | null
   phone: string | null
-  hasPaid: boolean | null
   lastPaymentAt: Date | null
   planType: $Enums.TraineePlanType | null
   rank: $Enums.Rank | null
@@ -56,11 +56,11 @@ export type TraineeMaxAggregateOutputType = {
   lastName: string | null
   email: string | null
   age: number | null
+  birthDate: Date | null
   createdAt: Date | null
   updatedAt: Date | null
   isActive: boolean | null
   phone: string | null
-  hasPaid: boolean | null
   lastPaymentAt: Date | null
   planType: $Enums.TraineePlanType | null
   rank: $Enums.Rank | null
@@ -72,11 +72,11 @@ export type TraineeCountAggregateOutputType = {
   lastName: number
   email: number
   age: number
+  birthDate: number
   createdAt: number
   updatedAt: number
   isActive: number
   phone: number
-  hasPaid: number
   lastPaymentAt: number
   planType: number
   rank: number
@@ -98,11 +98,11 @@ export type TraineeMinAggregateInputType = {
   lastName?: true
   email?: true
   age?: true
+  birthDate?: true
   createdAt?: true
   updatedAt?: true
   isActive?: true
   phone?: true
-  hasPaid?: true
   lastPaymentAt?: true
   planType?: true
   rank?: true
@@ -114,11 +114,11 @@ export type TraineeMaxAggregateInputType = {
   lastName?: true
   email?: true
   age?: true
+  birthDate?: true
   createdAt?: true
   updatedAt?: true
   isActive?: true
   phone?: true
-  hasPaid?: true
   lastPaymentAt?: true
   planType?: true
   rank?: true
@@ -130,11 +130,11 @@ export type TraineeCountAggregateInputType = {
   lastName?: true
   email?: true
   age?: true
+  birthDate?: true
   createdAt?: true
   updatedAt?: true
   isActive?: true
   phone?: true
-  hasPaid?: true
   lastPaymentAt?: true
   planType?: true
   rank?: true
@@ -233,12 +233,12 @@ export type TraineeGroupByOutputType = {
   lastName: string
   email: string
   age: number
+  birthDate: Date
   createdAt: Date
   updatedAt: Date
   isActive: boolean
   phone: string
-  hasPaid: boolean
-  lastPaymentAt: Date
+  lastPaymentAt: Date | null
   planType: $Enums.TraineePlanType
   rank: $Enums.Rank
   _count: TraineeCountAggregateOutputType | null
@@ -272,12 +272,12 @@ export type TraineeWhereInput = {
   lastName?: Prisma.StringFilter<"Trainee"> | string
   email?: Prisma.StringFilter<"Trainee"> | string
   age?: Prisma.IntFilter<"Trainee"> | number
+  birthDate?: Prisma.DateTimeFilter<"Trainee"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Trainee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Trainee"> | Date | string
   isActive?: Prisma.BoolFilter<"Trainee"> | boolean
   phone?: Prisma.StringFilter<"Trainee"> | string
-  hasPaid?: Prisma.BoolFilter<"Trainee"> | boolean
-  lastPaymentAt?: Prisma.DateTimeFilter<"Trainee"> | Date | string
+  lastPaymentAt?: Prisma.DateTimeNullableFilter<"Trainee"> | Date | string | null
   planType?: Prisma.EnumTraineePlanTypeFilter<"Trainee"> | $Enums.TraineePlanType
   rank?: Prisma.EnumRankFilter<"Trainee"> | $Enums.Rank
 }
@@ -288,12 +288,12 @@ export type TraineeOrderByWithRelationInput = {
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  hasPaid?: Prisma.SortOrder
-  lastPaymentAt?: Prisma.SortOrder
+  lastPaymentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   planType?: Prisma.SortOrder
   rank?: Prisma.SortOrder
 }
@@ -307,12 +307,12 @@ export type TraineeWhereUniqueInput = Prisma.AtLeast<{
   firstName?: Prisma.StringFilter<"Trainee"> | string
   lastName?: Prisma.StringFilter<"Trainee"> | string
   age?: Prisma.IntFilter<"Trainee"> | number
+  birthDate?: Prisma.DateTimeFilter<"Trainee"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"Trainee"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Trainee"> | Date | string
   isActive?: Prisma.BoolFilter<"Trainee"> | boolean
   phone?: Prisma.StringFilter<"Trainee"> | string
-  hasPaid?: Prisma.BoolFilter<"Trainee"> | boolean
-  lastPaymentAt?: Prisma.DateTimeFilter<"Trainee"> | Date | string
+  lastPaymentAt?: Prisma.DateTimeNullableFilter<"Trainee"> | Date | string | null
   planType?: Prisma.EnumTraineePlanTypeFilter<"Trainee"> | $Enums.TraineePlanType
   rank?: Prisma.EnumRankFilter<"Trainee"> | $Enums.Rank
 }, "id" | "email">
@@ -323,12 +323,12 @@ export type TraineeOrderByWithAggregationInput = {
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  hasPaid?: Prisma.SortOrder
-  lastPaymentAt?: Prisma.SortOrder
+  lastPaymentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   planType?: Prisma.SortOrder
   rank?: Prisma.SortOrder
   _count?: Prisma.TraineeCountOrderByAggregateInput
@@ -347,12 +347,12 @@ export type TraineeScalarWhereWithAggregatesInput = {
   lastName?: Prisma.StringWithAggregatesFilter<"Trainee"> | string
   email?: Prisma.StringWithAggregatesFilter<"Trainee"> | string
   age?: Prisma.IntWithAggregatesFilter<"Trainee"> | number
+  birthDate?: Prisma.DateTimeWithAggregatesFilter<"Trainee"> | Date | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Trainee"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Trainee"> | Date | string
   isActive?: Prisma.BoolWithAggregatesFilter<"Trainee"> | boolean
   phone?: Prisma.StringWithAggregatesFilter<"Trainee"> | string
-  hasPaid?: Prisma.BoolWithAggregatesFilter<"Trainee"> | boolean
-  lastPaymentAt?: Prisma.DateTimeWithAggregatesFilter<"Trainee"> | Date | string
+  lastPaymentAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Trainee"> | Date | string | null
   planType?: Prisma.EnumTraineePlanTypeWithAggregatesFilter<"Trainee"> | $Enums.TraineePlanType
   rank?: Prisma.EnumRankWithAggregatesFilter<"Trainee"> | $Enums.Rank
 }
@@ -363,12 +363,12 @@ export type TraineeCreateInput = {
   lastName: string
   email: string
   age: number
+  birthDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   phone: string
-  hasPaid?: boolean
-  lastPaymentAt: Date | string
+  lastPaymentAt?: Date | string | null
   planType: $Enums.TraineePlanType
   rank?: $Enums.Rank
 }
@@ -379,12 +379,12 @@ export type TraineeUncheckedCreateInput = {
   lastName: string
   email: string
   age: number
+  birthDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   phone: string
-  hasPaid?: boolean
-  lastPaymentAt: Date | string
+  lastPaymentAt?: Date | string | null
   planType: $Enums.TraineePlanType
   rank?: $Enums.Rank
 }
@@ -395,12 +395,12 @@ export type TraineeUpdateInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  hasPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  lastPaymentAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   planType?: Prisma.EnumTraineePlanTypeFieldUpdateOperationsInput | $Enums.TraineePlanType
   rank?: Prisma.EnumRankFieldUpdateOperationsInput | $Enums.Rank
 }
@@ -411,12 +411,12 @@ export type TraineeUncheckedUpdateInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  hasPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  lastPaymentAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   planType?: Prisma.EnumTraineePlanTypeFieldUpdateOperationsInput | $Enums.TraineePlanType
   rank?: Prisma.EnumRankFieldUpdateOperationsInput | $Enums.Rank
 }
@@ -427,12 +427,12 @@ export type TraineeCreateManyInput = {
   lastName: string
   email: string
   age: number
+  birthDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
   isActive?: boolean
   phone: string
-  hasPaid?: boolean
-  lastPaymentAt: Date | string
+  lastPaymentAt?: Date | string | null
   planType: $Enums.TraineePlanType
   rank?: $Enums.Rank
 }
@@ -443,12 +443,12 @@ export type TraineeUpdateManyMutationInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  hasPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  lastPaymentAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   planType?: Prisma.EnumTraineePlanTypeFieldUpdateOperationsInput | $Enums.TraineePlanType
   rank?: Prisma.EnumRankFieldUpdateOperationsInput | $Enums.Rank
 }
@@ -459,12 +459,12 @@ export type TraineeUncheckedUpdateManyInput = {
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   age?: Prisma.IntFieldUpdateOperationsInput | number
+  birthDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   phone?: Prisma.StringFieldUpdateOperationsInput | string
-  hasPaid?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  lastPaymentAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  lastPaymentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   planType?: Prisma.EnumTraineePlanTypeFieldUpdateOperationsInput | $Enums.TraineePlanType
   rank?: Prisma.EnumRankFieldUpdateOperationsInput | $Enums.Rank
 }
@@ -475,11 +475,11 @@ export type TraineeCountOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  hasPaid?: Prisma.SortOrder
   lastPaymentAt?: Prisma.SortOrder
   planType?: Prisma.SortOrder
   rank?: Prisma.SortOrder
@@ -495,11 +495,11 @@ export type TraineeMaxOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  hasPaid?: Prisma.SortOrder
   lastPaymentAt?: Prisma.SortOrder
   planType?: Prisma.SortOrder
   rank?: Prisma.SortOrder
@@ -511,11 +511,11 @@ export type TraineeMinOrderByAggregateInput = {
   lastName?: Prisma.SortOrder
   email?: Prisma.SortOrder
   age?: Prisma.SortOrder
+  birthDate?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   isActive?: Prisma.SortOrder
   phone?: Prisma.SortOrder
-  hasPaid?: Prisma.SortOrder
   lastPaymentAt?: Prisma.SortOrder
   planType?: Prisma.SortOrder
   rank?: Prisma.SortOrder
@@ -545,6 +545,10 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type EnumTraineePlanTypeFieldUpdateOperationsInput = {
   set?: $Enums.TraineePlanType
 }
@@ -561,11 +565,11 @@ export type TraineeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   lastName?: boolean
   email?: boolean
   age?: boolean
+  birthDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isActive?: boolean
   phone?: boolean
-  hasPaid?: boolean
   lastPaymentAt?: boolean
   planType?: boolean
   rank?: boolean
@@ -577,11 +581,11 @@ export type TraineeSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   lastName?: boolean
   email?: boolean
   age?: boolean
+  birthDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isActive?: boolean
   phone?: boolean
-  hasPaid?: boolean
   lastPaymentAt?: boolean
   planType?: boolean
   rank?: boolean
@@ -593,11 +597,11 @@ export type TraineeSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   lastName?: boolean
   email?: boolean
   age?: boolean
+  birthDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isActive?: boolean
   phone?: boolean
-  hasPaid?: boolean
   lastPaymentAt?: boolean
   planType?: boolean
   rank?: boolean
@@ -609,17 +613,17 @@ export type TraineeSelectScalar = {
   lastName?: boolean
   email?: boolean
   age?: boolean
+  birthDate?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   isActive?: boolean
   phone?: boolean
-  hasPaid?: boolean
   lastPaymentAt?: boolean
   planType?: boolean
   rank?: boolean
 }
 
-export type TraineeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "age" | "createdAt" | "updatedAt" | "isActive" | "phone" | "hasPaid" | "lastPaymentAt" | "planType" | "rank", ExtArgs["result"]["trainee"]>
+export type TraineeOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "age" | "birthDate" | "createdAt" | "updatedAt" | "isActive" | "phone" | "lastPaymentAt" | "planType" | "rank", ExtArgs["result"]["trainee"]>
 
 export type $TraineePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Trainee"
@@ -630,12 +634,12 @@ export type $TraineePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     lastName: string
     email: string
     age: number
+    birthDate: Date
     createdAt: Date
     updatedAt: Date
     isActive: boolean
     phone: string
-    hasPaid: boolean
-    lastPaymentAt: Date
+    lastPaymentAt: Date | null
     planType: $Enums.TraineePlanType
     rank: $Enums.Rank
   }, ExtArgs["result"]["trainee"]>
@@ -1066,11 +1070,11 @@ export interface TraineeFieldRefs {
   readonly lastName: Prisma.FieldRef<"Trainee", 'String'>
   readonly email: Prisma.FieldRef<"Trainee", 'String'>
   readonly age: Prisma.FieldRef<"Trainee", 'Int'>
+  readonly birthDate: Prisma.FieldRef<"Trainee", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Trainee", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Trainee", 'DateTime'>
   readonly isActive: Prisma.FieldRef<"Trainee", 'Boolean'>
   readonly phone: Prisma.FieldRef<"Trainee", 'String'>
-  readonly hasPaid: Prisma.FieldRef<"Trainee", 'Boolean'>
   readonly lastPaymentAt: Prisma.FieldRef<"Trainee", 'DateTime'>
   readonly planType: Prisma.FieldRef<"Trainee", 'TraineePlanType'>
   readonly rank: Prisma.FieldRef<"Trainee", 'Rank'>

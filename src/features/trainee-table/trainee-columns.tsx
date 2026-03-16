@@ -38,17 +38,17 @@ export const traineeColumns: ColumnDef<traineeType, unknown>[] = [
       cell: ({ getValue }) => (getValue() ? "Activo" : "Inactivo"),
     },
     {
-      accessorKey: "hasPaid",
+      accessorKey: "lastPaymentAt",
       header: "Pago Realizado",
       cell: ({ getValue }) => (getValue() ? "18/03/2026" : "No"),
     },
     {
-      accessorKey: "lastPaymentAt",
-      header: "Ultimo Pago",
-      cell: ({ getValue }) => {
-        const v = getValue() as Date | null | undefined;
-        return v ? new Date(v).toLocaleDateString() : "—";
-      },
-    },
+      header:"Acciones",
+      cell:({row})=>{
+        return(
+          <></>
+        )
+      }
+    }
   ];
   

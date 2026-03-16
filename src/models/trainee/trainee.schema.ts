@@ -23,11 +23,11 @@ export const traineeSchema = z.object({
   lastName: z.string().min(1).max(30),
   email: z.string().max(255),
   age: z.number().int(),
+  birthDate: z.date(),
   createdAt: z.date(),
   updatedAt: z.date(),
   isActive: z.boolean(),
   phone: z.string().max(15),
-  hasPaid: z.boolean(),
   lastPaymentAt: z.date(),
   planType: traineePlanTypeEnum,
   rank: z.enum(Rank),
@@ -48,6 +48,7 @@ export const createTraineeSchema = z.object({
     phone:z.string().max(15),
     planType:traineePlanTypeEnum,
     rank:z.enum(Rank),
+    birthDate:z.date(),
 });
 
 export const updateTraineeSchema = traineeSchema.partial();
