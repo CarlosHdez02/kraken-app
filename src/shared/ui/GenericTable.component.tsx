@@ -69,13 +69,16 @@ export function GenericTable<T>({
 
   return (
     <div className="w-full space-y-4">
-      <div className="w-full overflow-auto">
-        <table className="w-full border-collapse text-left">
-          <thead>
+      <div className="w-full overflow-auto rounded-xl border border-border bg-card">
+        <table className="w-full border-collapse text-left text-sm">
+          <thead className="bg-secondary text-secondary-foreground">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} className="border-b p-2 font-medium">
+                  <th
+                    key={header.id}
+                    className="border-b border-border px-3 py-2 font-semibold"
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -87,18 +90,24 @@ export function GenericTable<T>({
               </tr>
             ))}
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-border">
             {isLoading ? (
               <tr>
-                <td colSpan={columns.length} className="p-4 text-center">
+                <td
+                  colSpan={columns.length}
+                  className="px-4 py-6 text-center text-muted-foreground"
+                >
                   Loading...
                 </td>
               </tr>
             ) : (
               table.getRowModel().rows.map((row) => (
-                <tr key={row.id} className="border-b hover:bg-muted/50">
+                <tr
+                  key={row.id}
+                  className="transition-colors hover:bg-accent/10"
+                >
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="p-2">
+                    <td key={cell.id} className="px-3 py-2 align-middle">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}
@@ -160,7 +169,7 @@ export function GenericTable<T>({
                 ) : (
                   <PaginationItem key={page}>
                     <Button
-                      variant={pageIndex + 1 === page ? "outline" : "ghost"}
+                      variant={pageIndex + 1 === page ? "default" : "ghost"}
                       size="icon"
                       className="size-9"
                       onClick={(e) => {

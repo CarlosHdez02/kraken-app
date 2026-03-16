@@ -10,15 +10,17 @@ import { createTraineeAction } from "@/actions/Trainee.action";
 export default function TraineeTablePage() {
   const [open, setOpen] = React.useState(false);
   return (
-    <div className="container mx-auto py-8">
-      <h1 className="mb-6 text-2xl font-semibold">Alumnos</h1>
+    <div className="container mx-auto py-8 space-y-6">
+      <h1 className="text-3xl font-semibold tracking-tight text-primary">
+        Alumnos
+      </h1>
       <div className="mb-4 flex items-center justify-end">
         <GenericModal
           open={open}
           onOpenChange={setOpen}
           title="Agregar Alumno"
           trigger={
-            <Button variant="outline" className="cursor-pointer">
+            <Button variant="default" className="cursor-pointer gap-2">
               <PlusIcon className="w-4 h-4" />
               Agregar Alumno
             </Button>

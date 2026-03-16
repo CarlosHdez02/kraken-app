@@ -27,12 +27,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", inter.variable)}>
+    <html lang="en" className={cn("font-sans dark", inter.variable)}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <Toaster position="top-right" richColors />
+        <Toaster position="top-right" richColors theme="dark" />
       </body>
     </html>
   );
