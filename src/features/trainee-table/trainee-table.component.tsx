@@ -1,3 +1,4 @@
+"use client";
 
 import { useTrainee } from "@/hooks/useTrainee";
 import { GenericTable } from "@/shared/ui/GenericTable.component";

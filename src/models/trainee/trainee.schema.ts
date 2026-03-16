@@ -8,6 +8,13 @@ export const traineePlanTypeEnum = z.enum([
   "THREE_PER_WEEK",
   "UNLIMITED",
 ]);
+export const rankEnum = z.enum([
+"whiteBelt"
+,  "blueBelt",
+  "purpleBelt",
+  "BrownBelt",
+  "BlackBelt",
+]);
 
 export const traineeSchema = z.object({
   id: z.string().uuid(),
@@ -22,6 +29,7 @@ export const traineeSchema = z.object({
   hasPaid: z.boolean(),
   lastPaymentAt: z.date(),
   planType: traineePlanTypeEnum,
+  rank:rankEnum,
 });
 
 export const traineeApiResponseSchema = z.object({

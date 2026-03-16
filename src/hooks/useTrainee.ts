@@ -1,3 +1,4 @@
+"use client"
 import { traineeType } from "@/models/trainee/trainee.type";
 import React from "react";
 import { PaginationState } from "@tanstack/react-table";

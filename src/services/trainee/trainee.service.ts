@@ -4,7 +4,7 @@ import type { queryParamsType } from "@/models/query-params/query-params.type";
 import type { PaginatedResult } from "@/models/action-response/action-response.type";
 import { createErrorResponse } from "@/models/action-response/action-response.type";
 import { ErrorCode } from "@/constants/error-codes";
-import { PrismaClient } from "../../../app/generated/prisma/client";
+import { PrismaClient } from "@/generated/prisma/client";
 import { runPaginatedQuery } from "../../../lib/pagination";
 import type { traineeType } from "@/models/trainee/trainee.type";
 

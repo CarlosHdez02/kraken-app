@@ -1,67 +1,54 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { traineeType } from "@/models/trainee/trainee.type";
-export const traineeColumns:ColumnDef<traineeType>[] = [
+export const traineeColumns: ColumnDef<traineeType, unknown>[] = [
     {
-        header:"Name",
-        cell:({row})=>{
-            const trainee = row.original;
-            return <div>{trainee.firstName} {trainee.lastName}</div>;
-        }
+        id: "fullName",
+        header: "Nombre",
+        accessorFn: (row) => [row.firstName, row.lastName].filter(Boolean).join(" ").trim() || "—",
+        cell: ({ getValue }) => getValue() ?? "—",
     },
     {
-        header:"Email",
-        cell:({row})=>{
-            const trainee = row.original;
-            return <div>{trainee.email}</div>
-        }
+        accessorKey:"email",
+        header:"Correo Electronico",
+        cell: ({ getValue }) => getValue() ?? "—",
     },
     {
-        header:"Age",
-        cell:({row})=>{
-            const trainee = row.original;
-            return <div>{trainee.age}</div>
-        }
+        accessorKey:"rank",
+        header:"Rango",
+        cell: ({ getValue }) => getValue() ?? "—",
     },
     {
-        header:"Created At",
-        cell:({row})=>{
-            const trainee = row.original;
-            return <div>{trainee.createdAt.toLocaleDateString()}</div>
-        }
+      accessorKey: "age",
+      header: "Edad",
+      cell: ({ getValue }) => getValue() ?? "—",
     },
     {
-        header:"Updated At",
-        cell:({row})=>{
-            const trainee = row.original;
-            return <div>{trainee.updatedAt.toLocaleDateString()}</div>
-        }
+      accessorKey: "phone",
+      header: "Telefono",
+      cell: ({ getValue }) => getValue() ?? "—",
     },
     {
-        header:"Is Active",
-        cell:({row})=>{
-            const trainee = row.original;
-            return <div>{trainee.isActive ? "Yes" : "No"}</div>
-        }
+      accessorKey: "planType",
+      header: "Tipo de Plan",
+      cell: ({ getValue }) => String(getValue() ?? "—").replace(/_/g, " "),
     },
     {
-        header:"Phone",
-        cell:({row})=>{
-            const trainee = row.original;
-            return <div>{trainee.phone}</div>
-        }
+      accessorKey: "isActive",
+      header: "Estatus",
+      cell: ({ getValue }) => (getValue() ? "Activo" : "Inactivo"),
     },
     {
-        header:"Has Paid",
-        cell:({row})=>{
-            const trainee = row.original;
-            return <div>{trainee.hasPaid ? "Yes" : "No"}</div>
-        }
+      accessorKey: "hasPaid",
+      header: "Pago Realizado",
+      cell: ({ getValue }) => (getValue() ? "Yes" : "No"),
     },
     {
-        header:"Plan Type",
-        cell:({row})=>{
-            const trainee = row.original;
-            return <div>{trainee.planType}</div>
-        }
+      accessorKey: "lastPaymentAt",
+      header: "Ultimo Pago",
+      cell: ({ getValue }) => {
+        const v = getValue() as Date | null | undefined;
+        return v ? new Date(v).toLocaleDateString() : "—";
+      },
     },
-]
+  ];
+  

@@ -5,7 +5,7 @@
 
 generator client {
   provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -32,11 +32,12 @@ model Trainee {
   hasPaid       Boolean         @default(false)
   lastPaymentAt DateTime
   planType      TraineePlanType
+  rank          Rank
 
   @@map("Trainee")
 }
 
-enum CoachRank {
+enum Rank {
   blueBelt
   purpleBelt
   BrownBelt
@@ -52,7 +53,7 @@ model Coach {
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   phone     String    @db.VarChar(15)
-  rank      CoachRank
+  rank      Rank
 
   @@map("Coach")
 }

@@ -1,5 +1,5 @@
 import { env } from "@/models/envs/envs.schema";
-import { PrismaClient, Prisma } from "../app/generated/prisma/client";
+import { PrismaClient, Prisma } from "../src/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import dayjs from 'dayjs'
 
