@@ -370,7 +370,7 @@ export type TraineeCreateInput = {
   hasPaid?: boolean
   lastPaymentAt: Date | string
   planType: $Enums.TraineePlanType
-  rank: $Enums.Rank
+  rank?: $Enums.Rank
 }
 
 export type TraineeUncheckedCreateInput = {
@@ -386,7 +386,7 @@ export type TraineeUncheckedCreateInput = {
   hasPaid?: boolean
   lastPaymentAt: Date | string
   planType: $Enums.TraineePlanType
-  rank: $Enums.Rank
+  rank?: $Enums.Rank
 }
 
 export type TraineeUpdateInput = {
@@ -434,7 +434,7 @@ export type TraineeCreateManyInput = {
   hasPaid?: boolean
   lastPaymentAt: Date | string
   planType: $Enums.TraineePlanType
-  rank: $Enums.Rank
+  rank?: $Enums.Rank
 }
 
 export type TraineeUpdateManyMutationInput = {

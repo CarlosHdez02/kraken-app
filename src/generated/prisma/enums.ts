@@ -20,6 +20,7 @@ export type TraineePlanType = (typeof TraineePlanType)[keyof typeof TraineePlanT
 
 
 export const Rank = {
+  whiteBelt: 'whiteBelt',
   blueBelt: 'blueBelt',
   purpleBelt: 'purpleBelt',
   BrownBelt: 'BrownBelt',

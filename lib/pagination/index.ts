@@ -1,5 +1,3 @@
-// src/lib/pagination/index.ts
-
 export {
     getPaginationOffset,
     buildPaginationMetaData,

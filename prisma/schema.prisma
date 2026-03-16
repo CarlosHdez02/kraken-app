@@ -32,12 +32,13 @@ model Trainee {
   hasPaid       Boolean         @default(false)
   lastPaymentAt DateTime
   planType      TraineePlanType
-  rank          Rank
+  rank          Rank @default(whiteBelt)
 
   @@map("Trainee")
 }
 
 enum Rank {
+  whiteBelt
   blueBelt
   purpleBelt
   BrownBelt
