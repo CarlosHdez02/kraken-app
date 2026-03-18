@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "biome check",
-    "email:dev":"email dev --dir ./src/emails --port 4000",
+    "email:dev": "email dev --dir ./src/emails --port 4000",
     "format": "biome format --write",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
+    "@react-email/preview-server": "5.2.10",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/pg": "^8.18.0",
