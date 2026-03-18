@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 
 import { Calendar } from "@/components/ui/calendar"
@@ -22,12 +21,29 @@ import { cn } from "@/lib/utils"
 import { ActionResponseType } from "@/models/action-response/action-response.type"
 import { createTraineeType, traineeType } from "@/models/trainee/trainee.type"
 import { toast } from "sonner"
+import dayjs from "dayjs"
+
+const SUCCESS_TOAST_STYLE: React.CSSProperties = {
+  background: "var(--primary)",
+  color: "#ffffff",
+  border: "1px solid rgba(255,255,255,0.2)",
+  fontFamily: "var(--font-toast-alert), cursive",
+  fontSize: "1.125rem",
+  letterSpacing: "0.04em",
+  textShadow: "0 1px 0 rgba(0,0,0,0.35)",
+}
 
 export type TraineeFormProps = {
   onAddTrainee: (trainee: createTraineeType) => Promise<ActionResponseType<traineeType>>;
+  onSuccess?: () => void;
+  onCancel?: () => void;
 };
 
-const TraineeForm: React.FC<TraineeFormProps> = ({ onAddTrainee }) => {
+const TraineeForm: React.FC<TraineeFormProps> = ({
+  onAddTrainee,
+  onSuccess,
+  onCancel,
+}) => {
   const [formData, setFormData] = React.useState<createTraineeType>({
     firstName: "",
     lastName: "",
@@ -56,8 +72,12 @@ const TraineeForm: React.FC<TraineeFormProps> = ({ onAddTrainee }) => {
         toast.error(res.errorMessage ?? "Error al crear el alumno")
         return
       }
-      toast.success(res.message ?? "Alumno creado correctamente")
-      // optionally reset form
+      toast.success(res.message ?? "Alumno creado correctamente", {
+        style: SUCCESS_TOAST_STYLE,
+        className:
+          "[&_[data-icon]]:!text-white [&_[data-title]]:!font-[family-name:var(--font-toast-alert)] [&_[data-title]]:!text-lg [&_[data-title]]:!tracking-wide",
+      })
+      onSuccess?.()
       setFormData({
         firstName: "",
         lastName: "",
@@ -139,7 +159,7 @@ const TraineeForm: React.FC<TraineeFormProps> = ({ onAddTrainee }) => {
                 >
                   <CalendarIcon className="mr-2 h-4 w-4" />
                   {formData.birthDate
-                    ? format(formData.birthDate, "PPP")
+                    ? dayjs(formData.birthDate).format("DD/MM/YYYY")
                     : "Selecciona una fecha"}
                 </Button>
               </PopoverTrigger>
@@ -228,7 +248,14 @@ const TraineeForm: React.FC<TraineeFormProps> = ({ onAddTrainee }) => {
         </div>
         <div className="flex justify-end gap-x-2 mt-4">
         <Button className="cursor-pointer" type="submit">Agregar</Button>
-        <Button className="cursor-pointer" type="button" variant="destructive">Cancelar</Button>
+        <Button
+          type="button"
+          variant="destructive"
+          className="cursor-pointer"
+          onClick={() => onCancel?.()}
+        >
+          Cancelar
+        </Button>
         </div>
        
       </form>

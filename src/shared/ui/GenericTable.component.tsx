@@ -99,7 +99,7 @@ export function GenericTable<T>({
         )}
       >
         {/* Shimmer line at the very top */}
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/40 to-transparent" />
 
         {/*
           Single-table approach — the only reliable way to keep columns aligned.
@@ -162,8 +162,8 @@ export function GenericTable<T>({
                     key={row.id}
                     className={cn(
                       "group relative transition-colors duration-150",
-                      "hover:bg-primary/[0.04]",
-                      idx % 2 === 0 ? "bg-transparent" : "bg-muted/[0.02]"
+                      "hover:bg-primary/4",
+                      idx % 2 === 0 ? "bg-transparent" : "bg-muted/2"
                     )}
                   >
                     {row.getVisibleCells().map((cell) => (

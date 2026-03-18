@@ -6,7 +6,7 @@ import { Toaster } from "sonner";
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
     <TooltipProvider delayDuration={200}>
       {children}
       <Toaster position="top-right" richColors theme="dark" />

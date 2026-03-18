@@ -27,7 +27,11 @@ export default function TraineeTablePage() {
             </Button>
           }
         >
-          <TraineeForm onAddTrainee={createTraineeAction} />
+          <TraineeForm
+            onAddTrainee={createTraineeAction}
+            onSuccess={() => setOpen(false)}
+            onCancel={() => setOpen(false)}
+          />
         </GenericModal>
       </header>
 

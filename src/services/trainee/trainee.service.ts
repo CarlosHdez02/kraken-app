@@ -44,7 +44,7 @@ export default class TraineeService {
         return {
             success: true,
             data: newTrainee,
-            message: "Trainee created successfully",
+            message: "Alumno creado correctamente",
         };
     }catch(err){
         console.error("[TraineeService.createTrainee]",err);
